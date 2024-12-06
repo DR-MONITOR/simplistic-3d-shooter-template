@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://cu5qhvshdwkrh"]
+
+[ext_resource type="Script" path="res://scripts/health_manager.gd" id="1_l5con"]
+[ext_resource type="Script" path="res://scripts/body_hitbox.gd" id="2_vapo5"]
+[ext_resource type="Script" path="res://scripts/head_hitbox.gd" id="3_0kjbt"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_akcuy"]
+radius = 0.419516
+height = 3.09915
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_3ydhr"]
+radius = 0.353313
+
+[sub_resource type="SystemFont" id="SystemFont_sos5y"]
+font_names = PackedStringArray("Digital-7")
+subpixel_positioning = 0
+oversampling = 10.0
+
+[node name="HealthManager" type="Node3D"]
+script = ExtResource("1_l5con")
+
+[node name="body_hitbox" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+monitoring = false
+script = ExtResource("2_vapo5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="body_hitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+shape = SubResource("CapsuleShape3D_akcuy")
+
+[node name="head_hitbox" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+monitoring = false
+script = ExtResource("3_0kjbt")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="head_hitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.42527, 0)
+shape = SubResource("SphereShape3D_3ydhr")
+
+[node name="health_label" type="Label3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.131365, 3.34513, -0.0612664)
+modulate = Color(0.85, 0.2091, 0.1105, 1)
+outline_modulate = Color(0.0605303, 0.0605303, 0.0605303, 1)
+text = "9/30"
+font = SubResource("SystemFont_sos5y")
+font_size = 120
+outline_size = 0

@@ -1,0 +1,41 @@
+[gd_scene load_steps=8 format=3 uid="uid://ba24qpb57eo2o"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_5es0p"]
+[ext_resource type="PackedScene" uid="uid://djruaglc8ggxi" path="res://scenes/camera_holder.tscn" id="2_5khgy"]
+[ext_resource type="PackedScene" uid="uid://cu5qhvshdwkrh" path="res://scenes/health_manager.tscn" id="4_4tqkj"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_32v7c"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_vto2x"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wcx1e"]
+albedo_color = Color(1, 0.1, 0.1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_hv10c"]
+
+[node name="Player" type="CharacterBody3D" groups=["Player"]]
+script = ExtResource("1_5es0p")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01824, 0)
+shape = SubResource("CapsuleShape3D_32v7c")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03671, 0)
+mesh = SubResource("CapsuleMesh_vto2x")
+surface_material_override/0 = SubResource("StandardMaterial3D_wcx1e")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.325538, 0, 0, 0, 0.325538, 0, 0, 0, 0.325538, 0, 2.42524, 0)
+mesh = SubResource("SphereMesh_hv10c")
+surface_material_override/0 = SubResource("StandardMaterial3D_wcx1e")
+
+[node name="CameraHolder" parent="." instance=ExtResource("2_5khgy")]
+
+[node name="GunManager" parent="CameraHolder" index="1" node_paths=PackedStringArray("player_node")]
+player_node = NodePath("../..")
+
+[node name="HealthManager" parent="." instance=ExtResource("4_4tqkj")]
+
+[editable path="CameraHolder"]
+[editable path="CameraHolder/GunManager"]

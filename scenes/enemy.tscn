@@ -1,0 +1,136 @@
+[gd_scene load_steps=19 format=3 uid="uid://dvj7mvsdwgwyf"]
+
+[ext_resource type="Script" path="res://scripts/enemy/enemy.gd" id="1_yon6p"]
+[ext_resource type="PackedScene" uid="uid://cu5qhvshdwkrh" path="res://scenes/health_manager.tscn" id="2_is7vu"]
+[ext_resource type="Script" path="res://scripts/StateMachine.gd" id="3_r8rcm"]
+[ext_resource type="Script" path="res://scripts/enemy/enemy_wander_state.gd" id="4_0nu0d"]
+[ext_resource type="Script" path="res://scripts/enemy/enemy_chase_state.gd" id="5_t6xk4"]
+[ext_resource type="Script" path="res://scripts/camera_holder.gd" id="6_su43w"]
+[ext_resource type="PackedScene" uid="uid://bwqgy5o7qvskv" path="res://scenes/gun_manager.tscn" id="7_8u4to"]
+[ext_resource type="Script" path="res://scripts/enemy/enemy_death.gd" id="8_5q5nn"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g4awk"]
+radius = 0.6
+height = 2.1
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_telvf"]
+radius = 0.2
+
+[sub_resource type="Animation" id="Animation_ucgis"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.0126199, -0.0851758, -0.345915)]
+}
+
+[sub_resource type="Animation" id="Animation_4mudt"]
+resource_name = "move_side"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.594603, 0.594603),
+"update": 0,
+"values": [Vector3(0.0126199, -0.0118248, -0.345915), Vector3(0.353386, -0.0851758, -0.345915)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8xuo1"]
+_data = {
+"RESET": SubResource("Animation_ucgis"),
+"move_side": SubResource("Animation_4mudt")
+}
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_r2tlw"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_hi44q"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bm64j"]
+albedo_color = Color(5.58317e-06, 0.594234, 0.780053, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_kjeqi"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5dsut"]
+albedo_color = Color(1, 0.1, 0.1, 1)
+
+[node name="enemy" type="CharacterBody3D"]
+script = ExtResource("1_yon6p")
+
+[node name="HealthManager" parent="." instance=ExtResource("2_is7vu")]
+
+[node name="CollisionShape3D" parent="HealthManager/body_hitbox" index="0"]
+shape = SubResource("CapsuleShape3D_g4awk")
+
+[node name="CollisionShape3D" parent="HealthManager/head_hitbox" index="0"]
+shape = SubResource("SphereShape3D_telvf")
+
+[node name="CameraHolder" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75235, -0.74623)
+script = ExtResource("6_su43w")
+
+[node name="Camera3D" type="Camera3D" parent="CameraHolder"]
+
+[node name="GunManager" parent="CameraHolder" instance=ExtResource("7_8u4to")]
+transform = Transform3D(-1.31134e-08, 0, 0.3, 0, 0.3, 0, -0.3, 0, -1.31134e-08, 0.0126199, -0.0851758, -0.345915)
+
+[node name="AnimationPlayer" parent="CameraHolder/GunManager" index="1"]
+libraries = {
+"": SubResource("AnimationLibrary_8xuo1")
+}
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("InitialState")]
+script = ExtResource("3_r8rcm")
+InitialState = NodePath("EnemyWander")
+
+[node name="EnemyWander" type="Node" parent="StateMachine"]
+script = ExtResource("4_0nu0d")
+
+[node name="EnemyChase" type="Node" parent="StateMachine"]
+script = ExtResource("5_t6xk4")
+
+[node name="EnemyDeath" type="Node" parent="StateMachine"]
+script = ExtResource("8_5q5nn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01824, 0)
+shape = SubResource("CapsuleShape3D_r2tlw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03671, 0)
+mesh = SubResource("CapsuleMesh_hi44q")
+surface_material_override/0 = SubResource("StandardMaterial3D_bm64j")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.325538, 0, 0, 0, 0.325538, 0, 0, 0, 0.325538, 0, 2.42524, 0)
+mesh = SubResource("SphereMesh_kjeqi")
+surface_material_override/0 = SubResource("StandardMaterial3D_5dsut")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.325538, 0, 0, 0, 0.325538, 0, 0, 0, 0.325538, 0, 1.60543, -0.5748)
+mesh = SubResource("SphereMesh_kjeqi")
+surface_material_override/0 = SubResource("StandardMaterial3D_5dsut")
+
+[node name="DetectionAreas" type="Node3D" parent="."]
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_desired_distance = 0.1
+avoidance_enabled = true
+height = 0.01
+radius = 2.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[editable path="HealthManager"]
+[editable path="CameraHolder/GunManager"]

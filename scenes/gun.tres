@@ -1,0 +1,12 @@
+[gd_resource type="CapsuleMesh" load_steps=2 format=3 uid="uid://cj1swbp30bsvw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_chhv2"]
+albedo_color = Color(1, 0.16, 0.16, 1)
+emission_enabled = true
+emission = Color(1, 0.614046, 0.295961, 1)
+emission_energy_multiplier = 2.3
+
+[resource]
+material = SubResource("StandardMaterial3D_chhv2")
+radius = 0.025
+height = 0.05

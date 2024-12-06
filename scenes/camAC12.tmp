@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=3 uid="uid://djruaglc8ggxi"]
+
+[ext_resource type="Script" path="res://scripts/camera_holder.gd" id="1_6f2j4"]
+[ext_resource type="PackedScene" uid="uid://bwqgy5o7qvskv" path="res://scenes/gun_manager.tscn" id="2_su7o7"]
+
+[sub_resource type="Animation" id="Animation_ucgis"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.0126199, -0.0851758, -0.345915)]
+}
+
+[sub_resource type="Animation" id="Animation_4mudt"]
+resource_name = "move_side"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.594603, 0.594603),
+"update": 0,
+"values": [Vector3(0.0126199, -0.0118248, -0.345915), Vector3(0.353386, -0.0851758, -0.345915)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8xuo1"]
+_data = {
+"RESET": SubResource("Animation_ucgis"),
+"move_side": SubResource("Animation_4mudt")
+}
+
+[node name="CameraHolder" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75235, -0.74623)
+script = ExtResource("1_6f2j4")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+
+[node name="GunManager" parent="." instance=ExtResource("2_su7o7")]
+transform = Transform3D(-1.31134e-08, 0, 0.3, 0, 0.3, 0, -0.3, 0, -1.31134e-08, 0.0126199, -0.0851758, -0.345915)
+
+[node name="AnimationPlayer" parent="GunManager" index="1"]
+libraries = {
+"": SubResource("AnimationLibrary_8xuo1")
+}
+
+[editable path="GunManager"]
