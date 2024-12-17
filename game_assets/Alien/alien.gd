@@ -1,8 +1,11 @@
 extends CharacterBody3D
 
+@export var health = 20
 @export var walk_speed: float = 2.0
 @onready var navigation_agent: NavigationAgent3D = $NavigationAgent3D
 @export var ChaseDistance: float = 15.0
+@export var MeleeDamage: int = 2
+@export var MeleeAttackDistance: float = 2
 
 func _physics_process(delta):
 	move_and_slide()

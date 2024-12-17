@@ -20,6 +20,8 @@ func exit():
 	print("Exiting EnemyChase state")
 
 func process(delta):
+	if !animation_player.is_playing():
+		play_animation("Sprint") 
 	if HealthManager.health <= 0:
 		emit_signal("Transitioned", self, "EnemyDeath")
 	
@@ -34,6 +36,9 @@ func process(delta):
 	
 	if enemy.global_position.distance_to(player.global_position) > enemy.ChaseDistance:
 		emit_signal("Transitioned", self, "EnemyWander")
+		
+	if enemy.global_position.distance_to(player.global_position) < enemy.MeleeAttackDistance:
+		emit_signal("Transitioned", self, "EnemyMeleeAttack")
 	pass
 
 func physics_process(delta):

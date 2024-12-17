@@ -333,8 +333,8 @@ oversampling = 4.5
 
 [node name="pistol" type="Node3D"]
 script = ExtResource("1_s53ph")
-magazine_capacity = 1
-bullet_capacity = 10
+magazine_capacity = 4
+bullet_capacity = 12
 
 [node name="barrel" type="Node3D" parent="."]
 

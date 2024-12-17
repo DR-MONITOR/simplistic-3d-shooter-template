@@ -17,7 +17,7 @@ config/icon="res://icon.svg"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/anthonyec.camera_preview/plugin.cfg", "res://addons/csg_converter/plugin.cfg", "res://addons/godot_sfxr/plugin.cfg")
+enabled=PackedStringArray("res://addons/anthonyec.camera_preview/plugin.cfg", "res://addons/csg_converter/plugin.cfg", "res://addons/godot_sfxr/plugin.cfg", "res://addons/mixamo_animation_retargeter/plugin.cfg")
 
 [global_group]
 

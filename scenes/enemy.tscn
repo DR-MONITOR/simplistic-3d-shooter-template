@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dvj7mvsdwgwyf"]
+[gd_scene load_steps=20 format=3 uid="uid://dvj7mvsdwgwyf"]
 
 [ext_resource type="Script" path="res://scripts/enemy/enemy.gd" id="1_yon6p"]
 [ext_resource type="PackedScene" uid="uid://cu5qhvshdwkrh" path="res://scenes/health_manager.tscn" id="2_is7vu"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scripts/camera_holder.gd" id="6_su43w"]
 [ext_resource type="PackedScene" uid="uid://bwqgy5o7qvskv" path="res://scenes/gun_manager.tscn" id="7_8u4to"]
 [ext_resource type="Script" path="res://scripts/enemy/enemy_death.gd" id="8_5q5nn"]
+[ext_resource type="Script" path="res://scripts/enemy/enemy_meleeattack_state.gd" id="9_lckmg"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g4awk"]
 radius = 0.6
@@ -102,6 +103,9 @@ script = ExtResource("5_t6xk4")
 
 [node name="EnemyDeath" type="Node" parent="StateMachine"]
 script = ExtResource("8_5q5nn")
+
+[node name="EnemyMeleeAttack" type="Node" parent="StateMachine"]
+script = ExtResource("9_lckmg")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01824, 0)
