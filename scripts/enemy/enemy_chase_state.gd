@@ -61,4 +61,5 @@ func play_animation(anim_name: String):
 	if animation_player.has_animation(anim_name):
 		animation_player.play(anim_name)
 	else:
-		print("Animation '%s' not found!" % anim_name)
+		#print("Animation '%s' not found!" % anim_name)
+		pass

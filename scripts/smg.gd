@@ -3,7 +3,7 @@ extends Gun
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	bullet_damage = 10
+	bullet_damage = 5
 	pass # Replace with function body.
 
 

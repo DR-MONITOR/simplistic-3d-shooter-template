@@ -1,0 +1,532 @@
+[gd_scene load_steps=19 format=3 uid="uid://d376rfbyomh1h"]
+
+[ext_resource type="Script" path="res://scripts/shotgun.gd" id="1_4sdtf"]
+[ext_resource type="Material" path="res://game_assets/new_orm_material_3d.tres" id="2_idpya"]
+[ext_resource type="CapsuleMesh" uid="uid://cj1swbp30bsvw" path="res://scenes/gun.tres" id="3_14g8b"]
+[ext_resource type="Script" path="res://scripts/gun_label.gd" id="4_lk0ig"]
+[ext_resource type="AudioStream" path="res://game_assets/gun_shoot_explode.tres" id="5_x0aer"]
+[ext_resource type="Script" path="res://addons/godot_sfxr/SfxrStreamPlayer3D.gd" id="6_3x6qf"]
+[ext_resource type="AudioStream" path="res://game_assets/gun_pickup.tres" id="7_h3yxa"]
+[ext_resource type="AudioStream" path="res://game_assets/gun_click.tres" id="8_gkc3o"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3pgj4"]
+lifetime_randomness = 0.3
+velocity_pivot = Vector3(2, 4, 0)
+spread = 15.545
+initial_velocity_min = 14.23
+initial_velocity_max = 32.7
+gravity = Vector3(0, 0, 0)
+turbulence_enabled = true
+turbulence_noise_strength = 0.34
+turbulence_noise_scale = 0.475
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_s3pbr"]
+albedo_color = Color(0.919051, 0.812823, 0.108551, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_7arxr"]
+font_names = PackedStringArray("Digital-7")
+subpixel_positioning = 0
+oversampling = 10.0
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_8rkpg"]
+albedo_color = Color(0.861438, 0.265964, 1.92523e-07, 1)
+
+[sub_resource type="Animation" id="Animation_o4i2h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("barrel_stock/barrel_stock:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.111007, -0.006957, -0.0296831)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("barrel_stock/barrel_stock:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, -1.5708)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("barrel/barrel/GPUParticles3D:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("bullet/bullet:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("bullet/bullet:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.395636, -0.104363, -0.246775)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("sounds/explode:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("sounds/pickup:playing")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("sounds/click:playing")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_vsrv0"]
+resource_name = "no_ammo"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("barrel_stock/barrel_stock:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.0699722, -0.006957, -0.0296831), Vector3(0.0230218, -0.006957, -0.0296831), Vector3(-0.0699722, -0.006957, -0.0296831)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("bullet/bullet:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sounds/click:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0666667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_uvd66"]
+resource_name = "reload"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("barrel_stock/barrel_stock:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.56667, 1.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.0699722, -0.006957, -0.0296831), Vector3(-0.0699722, -0.006957, -0.0296831), Vector3(0.107444, -0.006957, -0.0296831)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("bullet/bullet:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.133333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("bullet/bullet:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.133333, 0.8, 1.4, 1.7),
+"transitions": PackedFloat32Array(0.25, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.395636, -0.104363, -0.246775), Vector3(0.146969, 0.202479, -0.199591), Vector3(0.2517, -5.49331e-05, -0.0291071), Vector3(0.428067, -5.49331e-05, -0.0291071)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("sounds/pickup:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1.66667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_g1uk1"]
+resource_name = "shoot"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.366667, 0.866667),
+"transitions": PackedFloat32Array(5.09825, 2, 2),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.396591), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("barrel_stock/barrel_stock:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.233333, 0.833333),
+"transitions": PackedFloat32Array(3.36358, 1, 3.36358, 3.36358),
+"update": 0,
+"values": [Vector3(0.111007, -0.006957, -0.0296831), Vector3(-0.138036, -0.00902426, -0.0296831), Vector3(0.111007, -0.006957, -0.0296831), Vector3(0.111007, -0.006957, -0.0296831)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("barrel_stock/barrel_stock:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.833333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, -1.5708), Vector3(0, 0, -1.5708), Vector3(0, 0, -1.5708)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("barrel/barrel/GPUParticles3D:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.233333),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("sounds/explode:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.233333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vhbi8"]
+_data = {
+"RESET": SubResource("Animation_o4i2h"),
+"no_ammo": SubResource("Animation_vsrv0"),
+"reload": SubResource("Animation_uvd66"),
+"shoot": SubResource("Animation_g1uk1")
+}
+
+[sub_resource type="SystemFont" id="SystemFont_wuuq5"]
+font_names = PackedStringArray("Digital-7")
+subpixel_positioning = 0
+oversampling = 4.5
+
+[node name="shotgun" type="Node3D" node_paths=PackedStringArray("raycast", "raycast_indicator")]
+script = ExtResource("1_4sdtf")
+magazine_capacity = 1
+bullet_capacity = 10
+raycast = NodePath("raycast/ray1")
+raycast_indicator = NodePath("raycast/ray1/indicator")
+
+[node name="barrel" type="Node3D" parent="."]
+transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, -0.153596, 0, 0)
+
+[node name="barrel" type="CSGCylinder3D" parent="barrel"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 1.11776, -0.006957, -0.0296831)
+radius = 0.04
+height = 1.5
+material = ExtResource("2_idpya")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="barrel/barrel"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -9.46871e-05, 0.335398, -0.00185828)
+emitting = false
+amount = 32
+lifetime = 0.6
+one_shot = true
+explosiveness = 1.0
+randomness = 0.09
+process_material = SubResource("ParticleProcessMaterial_3pgj4")
+draw_pass_1 = ExtResource("3_14g8b")
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="barrel/barrel"]
+transform = Transform3D(-0.497693, 0.047975, -4.37114e-08, 0.047975, 0.497693, 4.47653e-08, 4.78049e-08, 4.03647e-08, -0.5, -0.0174952, 0.544317, -0.0133707)
+polygon = PackedVector2Array(0, 0, 0.0057475, 0.233925, 0.183801, 0.188745, 0.0742927, 0.134597)
+depth = 0.06
+material = ExtResource("2_idpya")
+
+[node name="barrel2" type="CSGCylinder3D" parent="barrel/barrel"]
+transform = Transform3D(1, -1.06581e-14, 0, 1.06581e-14, 1, 0, 0, 0, 1, 0, 0, 0)
+operation = 2
+radius = 0.03
+height = 1.5
+material = ExtResource("2_idpya")
+
+[node name="barrel2" type="Node3D" parent="."]
+transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, -0.153596, -0.0983658, 0)
+
+[node name="barrel" type="CSGCylinder3D" parent="barrel2"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 1.11776, -0.006957, -0.0296831)
+radius = 0.04
+height = 1.5
+material = ExtResource("2_idpya")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="barrel2/barrel"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -9.46871e-05, 0.335398, -0.00185828)
+emitting = false
+amount = 32
+lifetime = 0.6
+one_shot = true
+explosiveness = 1.0
+randomness = 0.09
+process_material = SubResource("ParticleProcessMaterial_3pgj4")
+draw_pass_1 = ExtResource("3_14g8b")
+
+[node name="barrel2" type="CSGCylinder3D" parent="barrel2/barrel"]
+transform = Transform3D(1, -1.06581e-14, 0, 1.06581e-14, 1, 0, 0, 0, 1, 0, 0, 0)
+operation = 2
+radius = 0.03
+height = 1.5
+material = ExtResource("2_idpya")
+
+[node name="barrel_stock" type="Node3D" parent="."]
+
+[node name="barrel_stock" type="CSGCylinder3D" parent="barrel_stock"]
+transform = Transform3D(-3.61999e-06, 1, 0, -1, -3.61999e-06, 0, 0, 0, 1, 0.111007, -0.006957, -0.0296831)
+radius = 0.04
+height = 0.47
+material = ExtResource("2_idpya")
+
+[node name="bullet" type="Node3D" parent="."]
+
+[node name="bullet" type="CSGCylinder3D" parent="bullet"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -0.395636, -0.104363, -0.246775)
+visible = false
+radius = 0.02
+height = 0.0989244
+material = SubResource("ORMMaterial3D_s3pbr")
+
+[node name="bullet2" type="CSGCylinder3D" parent="bullet/bullet"]
+transform = Transform3D(1, -3.55271e-15, 0, 3.55271e-15, 1, 0, 0, 0, 1, -2.79397e-09, 0.0610186, 0)
+radius = 0.02
+height = 0.023
+cone = true
+material = SubResource("ORMMaterial3D_s3pbr")
+
+[node name="stock" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0773104, 0, 0)
+
+[node name="gun_label" type="Label3D" parent="stock" node_paths=PackedStringArray("anim_player")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.131365, -0.0528852, -0.124363)
+modulate = Color(0.115265, 0.853917, 0.567742, 1)
+outline_modulate = Color(0.0605303, 0.0605303, 0.0605303, 1)
+text = "9/30"
+font = SubResource("SystemFont_7arxr")
+font_size = 16
+outline_size = 0
+script = ExtResource("4_lk0ig")
+gun = NodePath("../..")
+anim_player = NodePath("")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="stock"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00117756, -0.085083, -0.0467191)
+size = Vector3(0.866455, 0.233276, 0.143066)
+material = SubResource("ORMMaterial3D_8rkpg")
+
+[node name="sounds" type="Node3D" parent="."]
+
+[node name="explode" type="AudioStreamPlayer3D" parent="sounds"]
+stream = ExtResource("5_x0aer")
+pitch_scale = 0.74
+script = ExtResource("6_3x6qf")
+wave/type = 2
+sample_params/sound_vol = 0.25
+sample_params/sample_rate = 44100.0
+envelope/attack_time = 0.0
+envelope/sustain_time = 0.101286
+envelope/punch_time = 0.297359
+envelope/decay_time = 0.103388
+frequency/start_frequency = 0.925474
+frequency/min_freq_cutoff = 0.328118
+frequency/slide = -0.259997
+frequency/delta_slide = 0.0
+vibrato/depth = 0.0
+vibrato/speed = 0.0
+arpeggiation/frequency_mult = 0.0
+arpeggiation/change_speed = 0.0
+duty_cycle/duty_cycle = 0.8402
+duty_cycle/sweep = -0.0135786
+retrigger/rate = 0.0
+flanger/offset = 0.0903317
+flanger/sweep = -0.0808014
+low_pass_filter/cutoff_frequency = 1.0
+low_pass_filter/cutoff_sweep = 0.0
+low_pass_filter/resonance = 0.0
+high_pass_filter/cutoff_frequency = 0.116558
+high_pass_filter/cutoff_sweep = 0.0
+
+[node name="pickup" type="AudioStreamPlayer3D" parent="sounds"]
+stream = ExtResource("7_h3yxa")
+script = ExtResource("6_3x6qf")
+wave/type = 1
+sample_params/sound_vol = 0.25
+sample_params/sample_rate = 44100.0
+envelope/attack_time = 0.0
+envelope/sustain_time = 0.0297021
+envelope/punch_time = 0.354286
+envelope/decay_time = 0.263174
+frequency/start_frequency = 0.442515
+frequency/min_freq_cutoff = 0.0
+frequency/slide = 0.0
+frequency/delta_slide = 0.0
+vibrato/depth = 0.0
+vibrato/speed = 0.0
+arpeggiation/frequency_mult = 0.38804
+arpeggiation/change_speed = 0.549923
+duty_cycle/duty_cycle = 0.0
+duty_cycle/sweep = 0.0
+retrigger/rate = 0.0
+flanger/offset = 0.0
+flanger/sweep = 0.0
+low_pass_filter/cutoff_frequency = 1.0
+low_pass_filter/cutoff_sweep = 0.0
+low_pass_filter/resonance = 0.0
+high_pass_filter/cutoff_frequency = 0.0
+high_pass_filter/cutoff_sweep = 0.0
+
+[node name="click" type="AudioStreamPlayer3D" parent="sounds"]
+stream = ExtResource("8_gkc3o")
+script = ExtResource("6_3x6qf")
+wave/type = 1
+sample_params/sound_vol = 0.25
+sample_params/sample_rate = 44100.0
+envelope/attack_time = 0.136654
+envelope/sustain_time = 0.059338
+envelope/punch_time = 0.0
+envelope/decay_time = 0.262048
+frequency/start_frequency = 0.775607
+frequency/min_freq_cutoff = 0.0
+frequency/slide = -0.391611
+frequency/delta_slide = 0.0
+vibrato/depth = 0.0
+vibrato/speed = 0.0
+arpeggiation/frequency_mult = 0.0
+arpeggiation/change_speed = 0.0
+duty_cycle/duty_cycle = 1.0
+duty_cycle/sweep = 0.0
+retrigger/rate = 0.0
+flanger/offset = 0.0
+flanger/sweep = 0.0
+low_pass_filter/cutoff_frequency = 1.0
+low_pass_filter/cutoff_sweep = 0.0
+low_pass_filter/resonance = 0.0
+high_pass_filter/cutoff_frequency = 0.93901
+high_pass_filter/cutoff_sweep = 0.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vhbi8")
+}
+
+[node name="raycast" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.69647, 0.077297, -0.0279558)
+
+[node name="ray1" type="RayCast3D" parent="raycast"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+target_position = Vector3(0, -20, 0)
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="indicator" type="Label3D" parent="raycast/ray1"]
+transform = Transform3D(-1.64203e-15, 1, 4.37114e-08, 4.37114e-08, -4.37114e-08, 1, 1, 0, -4.37114e-08, 0.102776, 1.67682, 0)
+text = "sfsf"
+font = SubResource("SystemFont_wuuq5")
+outline_size = 0

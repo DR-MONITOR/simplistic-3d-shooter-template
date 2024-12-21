@@ -35,6 +35,15 @@ surface_material_override/0 = SubResource("StandardMaterial3D_wcx1e")
 [node name="GunManager" parent="CameraHolder" index="1" node_paths=PackedStringArray("player_node")]
 player_node = NodePath("../..")
 
+[node name="pistol" parent="CameraHolder/GunManager" index="0"]
+magazine_capacity = null
+bullet_capacity = null
+
+[node name="smg" parent="CameraHolder/GunManager" index="1"]
+magazine_capacity = null
+bullet_capacity = null
+is_automatic = null
+
 [node name="HealthManager" parent="." instance=ExtResource("4_4tqkj")]
 
 [editable path="CameraHolder"]

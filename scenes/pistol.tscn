@@ -331,10 +331,13 @@ font_names = PackedStringArray("Digital-7")
 subpixel_positioning = 0
 oversampling = 4.5
 
-[node name="pistol" type="Node3D"]
+[node name="pistol" type="Node3D" node_paths=PackedStringArray("raycast", "raycast_indicator")]
 script = ExtResource("1_s53ph")
-magazine_capacity = 4
-bullet_capacity = 12
+magazine_capacity = 1
+bullet_capacity = 15
+is_automatic = null
+raycast = NodePath("raycast/ray1")
+raycast_indicator = NodePath("raycast/ray1/indicator")
 
 [node name="barrel" type="Node3D" parent="."]
 
@@ -506,12 +509,13 @@ libraries = {
 }
 
 [node name="raycast" type="Node3D" parent="."]
-unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.69647, 0.077297, -0.0279558)
 
 [node name="ray1" type="RayCast3D" parent="raycast"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
 target_position = Vector3(0, -150, 0)
+collide_with_areas = true
+collide_with_bodies = false
 
 [node name="indicator" type="Label3D" parent="raycast/ray1"]
 transform = Transform3D(-1.64203e-15, 1, 4.37114e-08, 4.37114e-08, -4.37114e-08, 1, 1, 0, -4.37114e-08, 0.102776, 1.67682, 0)

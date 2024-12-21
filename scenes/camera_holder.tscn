@@ -49,7 +49,7 @@ script = ExtResource("1_6f2j4")
 [node name="GunManager" parent="." instance=ExtResource("2_su7o7")]
 transform = Transform3D(-1.31134e-08, 0, 0.3, 0, 0.3, 0, -0.3, 0, -1.31134e-08, 0.0126199, -0.0851758, -0.345915)
 
-[node name="AnimationPlayer" parent="GunManager" index="1"]
+[node name="AnimationPlayer" parent="GunManager" index="2"]
 libraries = {
 "": SubResource("AnimationLibrary_8xuo1")
 }

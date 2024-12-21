@@ -68,6 +68,7 @@ albedo_color = Color(1, 0.1, 0.1, 1)
 
 [node name="enemy" type="CharacterBody3D"]
 script = ExtResource("1_yon6p")
+walk_speed = 1.0
 
 [node name="HealthManager" parent="." instance=ExtResource("2_is7vu")]
 
@@ -86,7 +87,7 @@ script = ExtResource("6_su43w")
 [node name="GunManager" parent="CameraHolder" instance=ExtResource("7_8u4to")]
 transform = Transform3D(-1.31134e-08, 0, 0.3, 0, 0.3, 0, -0.3, 0, -1.31134e-08, 0.0126199, -0.0851758, -0.345915)
 
-[node name="AnimationPlayer" parent="CameraHolder/GunManager" index="1"]
+[node name="AnimationPlayer" parent="CameraHolder/GunManager" index="3"]
 libraries = {
 "": SubResource("AnimationLibrary_8xuo1")
 }
