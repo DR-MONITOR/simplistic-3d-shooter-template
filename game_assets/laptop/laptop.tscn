@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8gkf0y80jt3g"]
+
+[ext_resource type="PackedScene" uid="uid://ct8u7gisy4s20" path="res://game_assets/laptop/Lowpoly_Notebook.glb" id="1_gtad8"]
+
+[node name="Lowpoly_Notebook2" instance=ExtResource("1_gtad8")]
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/1/rotation = Quaternion(0, 0, 0.012317, 0.999924)
+
+[node name="AnimationPlayer" parent="." index="1"]
+autoplay = "ArmatureAction"

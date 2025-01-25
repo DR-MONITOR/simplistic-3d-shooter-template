@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://ba24qpb57eo2o"]
+[gd_scene load_steps=9 format=3 uid="uid://ba24qpb57eo2o"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_5es0p"]
 [ext_resource type="PackedScene" uid="uid://djruaglc8ggxi" path="res://scenes/camera_holder.tscn" id="2_5khgy"]
 [ext_resource type="PackedScene" uid="uid://cu5qhvshdwkrh" path="res://scenes/health_manager.tscn" id="4_4tqkj"]
+[ext_resource type="Script" path="res://scripts/StateMachine.gd" id="4_ccawa"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_32v7c"]
 
@@ -45,6 +46,9 @@ bullet_capacity = null
 is_automatic = null
 
 [node name="HealthManager" parent="." instance=ExtResource("4_4tqkj")]
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("4_ccawa")
 
 [editable path="CameraHolder"]
 [editable path="CameraHolder/GunManager"]

@@ -1,0 +1,83 @@
+[gd_scene load_steps=3 format=3 uid="uid://c14ph77bgt7kn"]
+
+[ext_resource type="PackedScene" uid="uid://kb80uo8w8kj2" path="res://game_assets/drug/drug_package.glb" id="1_pis5o"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bf342"]
+size = Vector3(0.929688, 0.298492, 1)
+
+[node name="drugpile" type="Node3D"]
+
+[node name="layer3" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.365212, 0, 0.0983939)
+
+[node name="drug_package" parent="layer3" instance=ExtResource("1_pis5o")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+
+[node name="drug_package2" parent="layer3" instance=ExtResource("1_pis5o")]
+transform = Transform3D(-0.25, 0, 2.18557e-08, 0, 0.25, 0, -2.18557e-08, 0, -0.25, 0, 0, 0.21179)
+
+[node name="drug_package3" parent="layer3" instance=ExtResource("1_pis5o")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, -0.398814)
+
+[node name="drug_package4" parent="layer3" instance=ExtResource("1_pis5o")]
+transform = Transform3D(-0.25, 0, 2.18557e-08, 0, 0.25, 0, -2.18557e-08, 0, -0.25, 0, 0, -0.199994)
+
+[node name="drug_package5" parent="layer3" instance=ExtResource("1_pis5o")]
+transform = Transform3D(-0.25, 0, -2.18557e-08, 0, 0.25, 0, 2.18557e-08, 0, -0.25, 0.364693, 0, -0.199994)
+
+[node name="drug_package6" parent="layer3" instance=ExtResource("1_pis5o")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0.364693, 0, -0.398814)
+
+[node name="drug_package7" parent="layer3" instance=ExtResource("1_pis5o")]
+transform = Transform3D(-0.25, 0, -2.18557e-08, 0, 0.25, 0, 2.18557e-08, 0, -0.25, 0.364693, 0, 0.21179)
+
+[node name="drug_package8" parent="layer3" instance=ExtResource("1_pis5o")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0.364693, 0, 0)
+
+[node name="drug_package9" parent="layer3" instance=ExtResource("1_pis5o")]
+transform = Transform3D(-0.25, 0, -2.18557e-08, 0, 0.25, 0, 2.18557e-08, 0, -0.25, 0.728034, 0, -0.199994)
+
+[node name="drug_package10" parent="layer3" instance=ExtResource("1_pis5o")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0.728034, 0, -0.398814)
+
+[node name="drug_package11" parent="layer3" instance=ExtResource("1_pis5o")]
+transform = Transform3D(-0.25, 0, -2.18557e-08, 0, 0.25, 0, 2.18557e-08, 0, -0.25, 0.728034, 0, 0.21179)
+
+[node name="drug_package12" parent="layer3" instance=ExtResource("1_pis5o")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0.728034, 0, 0)
+
+[node name="layer2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.164169, 0.119956, 0.00102979)
+
+[node name="drug_package" parent="layer2" instance=ExtResource("1_pis5o")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+
+[node name="drug_package2" parent="layer2" instance=ExtResource("1_pis5o")]
+transform = Transform3D(-0.25, 0, 2.18557e-08, 0, 0.25, 0, -2.18557e-08, 0, -0.25, 0, 0, 0.21179)
+
+[node name="drug_package4" parent="layer2" instance=ExtResource("1_pis5o")]
+transform = Transform3D(-0.25, 0, 2.18557e-08, 0, 0.25, 0, -2.18557e-08, 0, -0.25, 0, 0, -0.199994)
+
+[node name="drug_package5" parent="layer2" instance=ExtResource("1_pis5o")]
+transform = Transform3D(-0.25, 0, -2.18557e-08, 0, 0.25, 0, 2.18557e-08, 0, -0.25, 0.364693, 0, -0.199994)
+
+[node name="drug_package7" parent="layer2" instance=ExtResource("1_pis5o")]
+transform = Transform3D(-0.25, 0, -2.18557e-08, 0, 0.25, 0, 2.18557e-08, 0, -0.25, 0.364693, 0, 0.21179)
+
+[node name="drug_package8" parent="layer2" instance=ExtResource("1_pis5o")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0.364693, 0, 0)
+
+[node name="layer1" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.356047, -0.102652, 0.0983939)
+
+[node name="drug_package9" parent="layer1" instance=ExtResource("1_pis5o")]
+transform = Transform3D(-0.25, 0, -2.18557e-08, 0, 0.25, 0, 2.18557e-08, 0, -0.25, 0.352573, 0.338306, -0.199994)
+
+[node name="drug_package12" parent="layer1" instance=ExtResource("1_pis5o")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0.352573, 0.338306, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0102408, 0.0711823, 0)
+shape = SubResource("BoxShape3D_bf342")

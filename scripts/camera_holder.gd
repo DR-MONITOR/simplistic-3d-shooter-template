@@ -1,7 +1,7 @@
 extends Node3D
 
 # Maximum up and down angles in radians
-var max_pitch = deg_to_rad(80)  # Adjust as needed (e.g., 80 degrees)
+var max_pitch = deg_to_rad(70)  # Adjust as needed (e.g., 80 degrees)
 
 # Smoothly rotate the X-axis (up/down) to look at the target position
 func look_at_x_smooth(target_position: Vector3, delta: float, speed: float):

@@ -404,7 +404,7 @@ material = SubResource("ORMMaterial3D_s3pbr")
 [node name="stock" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0773104, 0, 0)
 
-[node name="gun_label" type="Label3D" parent="stock" node_paths=PackedStringArray("anim_player")]
+[node name="gun_label" type="Label3D" parent="stock"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.131365, -0.0528852, -0.124363)
 modulate = Color(0.115265, 0.853917, 0.567742, 1)
 outline_modulate = Color(0.0605303, 0.0605303, 0.0605303, 1)
@@ -414,7 +414,6 @@ font_size = 16
 outline_size = 0
 script = ExtResource("4_lk0ig")
 gun = NodePath("../..")
-anim_player = NodePath("")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="stock"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00117756, -0.085083, -0.0467191)

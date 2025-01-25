@@ -55,7 +55,7 @@ func physics_process(delta):
 	if enemy.get_node_or_null("CameraHolder")!=null:
 		# Make the enemy look at the player smoothly
 		enemy.get_node("CameraHolder").look_at_x_smooth(player.global_position + Vector3(0, 2, 0), delta, 5)
-		enemy.get_node("CameraHolder").get_node("GunManager").current_gun_shoot()
+		#enemy.get_node("CameraHolder").get_node("GunManager").current_gun_shoot()
 
 func play_animation(anim_name: String):
 	if animation_player.has_animation(anim_name):

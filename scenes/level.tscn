@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dj2wbeynbjh7j"]
+[gd_scene load_steps=22 format=3 uid="uid://dj2wbeynbjh7j"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_mnnt3"]
 [ext_resource type="Texture2D" uid="uid://d0rjejgmvcn62" path="res://addons/kenney_prototype_textures/dark/texture_05.png" id="1_o32cr"]
@@ -9,6 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://dvj7mvsdwgwyf" path="res://scenes/enemy.tscn" id="4_rln5i"]
 [ext_resource type="PackedScene" uid="uid://b8a44x7piqbo3" path="res://game_assets/Alien/alien.tscn" id="6_yhr28"]
 [ext_resource type="PackedScene" uid="uid://ddtkoyuas1xi0" path="res://scenes/destroyable_skull_scene.tscn" id="9_xno74"]
+[ext_resource type="PackedScene" uid="uid://nd1d0omnllm7" path="res://game_assets/can/can.tscn" id="10_lx3yn"]
+[ext_resource type="PackedScene" uid="uid://c14ph77bgt7kn" path="res://game_assets/drug/drugpile.tscn" id="11_7rwqn"]
+[ext_resource type="PackedScene" uid="uid://c8gkf0y80jt3g" path="res://game_assets/laptop/laptop.tscn" id="12_4fjrr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_di8f2"]
 shader = ExtResource("2_hpcen")
@@ -218,3 +221,18 @@ transform = Transform3D(0.715229, 0, -0.69889, 0, 1, 0, 0.69889, 0, 0.715229, -9
 
 [node name="alien3" parent="NavigationRegion3D" instance=ExtResource("6_yhr28")]
 transform = Transform3D(0.214569, 0, -0.209667, 0, 0.3, 0, 0.209667, 0, 0.214569, -22.8723, 9.53311, 3.07506)
+
+[node name="RigidBody3D" parent="." instance=ExtResource("10_lx3yn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.0518, 7, -4.97613)
+
+[node name="RigidBody3D2" parent="." instance=ExtResource("10_lx3yn")]
+transform = Transform3D(0.249373, 0.745197, 0.618462, -0.278673, 0.666845, -0.691129, -0.927445, 0, 0.373959, 9.0518, 7, -5.74075)
+
+[node name="RigidBody3D3" parent="." instance=ExtResource("10_lx3yn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.0518, 7, -6.83563)
+
+[node name="drugpile" parent="." instance=ExtResource("11_7rwqn")]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 9, 0.166281, -9)
+
+[node name="Lowpoly_Notebook2" parent="." instance=ExtResource("12_4fjrr")]
+transform = Transform3D(0.285, 0, 0, 0, 0.285, 0, 0, 0, 0.285, 11, 0, -16)

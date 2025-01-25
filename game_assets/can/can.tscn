@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://nd1d0omnllm7"]
+
+[ext_resource type="PackedScene" uid="uid://c63bwehda4g56" path="res://game_assets/can/cocacola_can.glb" id="1_57o2u"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_48hmt"]
+height = 2.851
+
+[node name="RigidBody3D" type="RigidBody3D"]
+mass = 0.095
+
+[node name="cocacola_can" parent="." instance=ExtResource("1_57o2u")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_48hmt")
